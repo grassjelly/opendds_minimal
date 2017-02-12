@@ -2,3 +2,4 @@ gen
 build
 .config.swp
 *.log
+*.ior

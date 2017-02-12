@@ -11,11 +11,10 @@ include_directories( ${CMAKE_SOURCE_DIR}/src )
 include_directories( ${CMAKE_SOURCE_DIR}/gen )
 include_directories( ${CMAKE_SOURCE_DIR}/api )
 
-
-set( DDS_ROOT "/root/OpenDDS" )
-set( ACE_ROOT "/root/OpenDDS/ACE_wrappers" )
-set( MPC_ROOT "/root/OpenDDS/ACE_wrappers/MPC" )
-set( TAO_ROOT "/root/OpenDDS/ACE_wrappers/TAO" )
+set( DDS_ROOT "$ENV{DDS_ROOT}" )
+set( ACE_ROOT "$ENV{DDS_ROOT}/ACE_wrappers" )
+set( MPC_ROOT "$ENV{DDS_ROOT}/ACE_wrappers/MPC" )
+set( TAO_ROOT "$ENV{DDS_ROOT}/ACE_wrappers/TAO" )
 
 include_directories( ${DDS_ROOT} )
 include_directories( ${DDS_ROOT}/tools/modeling/codegen )
@@ -45,7 +44,7 @@ add_library(source
 )
 
 add_executable(subscriber src/Subscriber.cpp)
-target_link_libraries(subscriber source ${OPENDDS_LIBS} )
+target_link_libraries(subscriber source ${OPENDDS_LIBS})
 
 add_executable(publisher src/Publisher.cpp)
-target_link_libraries(publisher source ${OPENDDS_LIBS} )
+target_link_libraries(publisher source ${OPENDDS_LIBS})
