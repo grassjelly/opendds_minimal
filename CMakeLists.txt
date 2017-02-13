@@ -24,6 +24,7 @@ include_directories(
 	${PROJECT_SOURCE_DIR}/api
 )
 
+#DDS Includes
 include_directories(
 	${DDS_ROOT}
 	${DDS_ROOT}/tools/modeling/codegen
@@ -35,7 +36,7 @@ include_directories(
 	${TAO_ROOT}/orbsvcs
 )
 
-#DDS Includes
+#DDS Gen Codes Source
 add_library(dds_source
 	${PROJECT_SOURCE_DIR}/gen/TemplateC.cpp
 	${PROJECT_SOURCE_DIR}/gen/TemplateS.cpp
