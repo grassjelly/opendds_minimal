@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 2.8)
-project( opendds_template )
+project(opendds_minimal)
+
+execute_process(
+	COMMAND ./gen.sh
+	WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+)
 
 set(TEMP_CXX_FLAGS  ${CMAKE_CXX_FLAGS} )
 set(CMAKE_CXX_FLAGS "-std=c++11 -O3 ${TEMP_CXX_FLAGS}")

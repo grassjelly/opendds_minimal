@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
-echo ""
-echo "Have you source your OpenDDS env ($ source OpenDDS/setenv.sh) ? "
-echo "Press [ENTER] to continue"
-read
-
-./clean.sh
 
 #scrape all files and replace with idl filename
+rm -rf gen
+
 idl_filename=$(basename ./idl/*.idl .idl)
 perl -p -i -e "s/Template/${idl_filename}/g" `find ./ -name *.cpp`
 perl -p -i -e "s/Template/${idl_filename}/g" `find ./ -name *.txt`
@@ -20,11 +16,4 @@ tao_idl -I$DDS_ROOT -I$TAO_ROOT/orbsvcs -o ../gen *.idl
 echo "Code Generated"
 cd ..
 
-#Build and Compile
-echo "Building Now"
-mkdir build
 cp ./run_test.pl ./build
-cd build
-cmake ..
-make
-cd ..
