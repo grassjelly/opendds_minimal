@@ -12,11 +12,11 @@
 namespace examples { namespace boilerplate {
 
 DDS::DomainParticipant_var
-createParticipant(DDS::DomainParticipantFactory_var dpf)
+createParticipant(DDS::DomainParticipantFactory_var dpf, DDS::DomainId_t domain_id)
 {
   // Create DomainParticipant
   DDS::DomainParticipant_var participant =
-    dpf->create_participant(42, // made-up domain ID
+    dpf->create_participant(domain_id, // made-up domain ID
                             PARTICIPANT_QOS_DEFAULT,
                             0,  // no listener
                             OpenDDS::DCPS::DEFAULT_STATUS_MASK);
@@ -29,7 +29,7 @@ createParticipant(DDS::DomainParticipantFactory_var dpf)
 }
 
 DDS::Topic_var
-createTopic(DDS::DomainParticipant_var participant)
+createTopic(DDS::DomainParticipant_var participant, const char* topic_name)
 {
   // Register TypeSupport (Template::Message)
   Template::MessageTypeSupport_var ts =
@@ -42,7 +42,7 @@ createTopic(DDS::DomainParticipant_var participant)
   // Create Topic (Movie Discussion List)
   CORBA::String_var type_name = ts->get_type_name();
   DDS::Topic_var topic =
-    participant->create_topic("Movie Discussion List",
+    participant->create_topic(topic_name,
                               type_name,
                               TOPIC_QOS_DEFAULT,
                               0,

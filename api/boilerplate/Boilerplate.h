@@ -12,12 +12,12 @@
 namespace examples { namespace boilerplate {
 
 DDS::DomainParticipant_var
-createParticipant(DDS::DomainParticipantFactory_var dpf);
+createParticipant(DDS::DomainParticipantFactory_var dpf, DDS::DomainId_t domain_id);
 
 DDS::Publisher_var  createPublisher(DDS::DomainParticipant_var participant);
 DDS::Subscriber_var createSubscriber(DDS::DomainParticipant_var participant);
 
-DDS::Topic_var createTopic(DDS::DomainParticipant_var participant);
+DDS::Topic_var createTopic(DDS::DomainParticipant_var participant, const char* topic_name);
 
 DDS::DataWriter_var createDataWriter(DDS::Publisher_var publisher,
                                      DDS::Topic_var topic);
